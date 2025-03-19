@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://PradumShukla8188.github.io/utthanynr.org",
+  "homepage": "https://PradumShukla8188.github.io/utthan_institue_frontend",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

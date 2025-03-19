@@ -1,0 +1,84 @@
+/* Basic styles for the 404 page */
+.not-found-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .not-found {
+    text-align: center;
+    animation: fadeIn 1.5s ease-out;
+  }
+  
+  .not-found-title {
+    font-size: 100px;
+    font-weight: bold;
+    color: #ff4c4c;
+    margin: 0;
+    animation: bounceIn 1.5s infinite alternate;
+  }
+  
+  .not-found-message {
+    font-size: 24px;
+    color: #555;
+    margin: 20px 0;
+    animation: fadeInMessage 2s ease-out;
+  }
+  
+  .go-home-button {
+    padding: 12px 25px;
+    font-size: 18px;
+    background-color: #ff4c4c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .go-home-button:hover {
+    background-color: #ff3333;
+  }
+ .go-home-button a {
+    color: white !important;
+    text-decoration: none !important;
+}
+  /* Keyframe animations */
+  @keyframes bounceIn {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes fadeInMessage {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

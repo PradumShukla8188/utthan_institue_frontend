@@ -1,0 +1,130 @@
+/* Page Title */
+.page-nav {
+    margin-top: 117px !important;
+    text-align: center;
+    background: #f8f9fa;
+    padding: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .page-nav h2 {
+    font-size: 28px;
+    color: #333;
+  }
+  
+  .page-nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .page-nav ul li {
+    font-size: 16px;
+  }
+  
+  .page-nav ul li a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  /* Blog Grid */
+  .blog-container {
+    padding: 40px;
+    background: #fff;
+  }
+  
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    justify-items: center;
+  }
+  
+  /* Blog Card */
+  .blog-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .blog-card:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Image */
+  .blog-image {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .blog-image img {
+    width: 100%;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .blog-card:hover .blog-image img {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+  
+  /* Content */
+  .blog-content {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .blog-content small {
+    display: block;
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 10px;
+  }
+  
+  .blog-content h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .blog-content p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+  }
+  
+  .blog-content .link {
+    margin-top: 15px;
+  }
+  
+  .blog-content .link a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .blog-content .link a:hover {
+    color: #0056b3;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .blog-grid {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .blog-container {
+      padding: 20px;
+    }
+  }
+  

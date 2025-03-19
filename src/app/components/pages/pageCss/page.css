@@ -1,0 +1,59 @@
+/* .owl-carousel {
+    display: block !important;
+    width: 100%;
+    z-index: 1;
+} */
+
+/* slider css */
+.slider {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .owl-carousel .owl-stage {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+  
+  .owl-item {
+    flex: 0 0 100%;
+  }
+  
+  .owl-nav {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    z-index: 10;
+  }
+  
+  .owl-prev, .owl-next {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  /* .owl-dots {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .owl-dot {
+    display: inline-block;
+    margin: 0 5px;
+    cursor: pointer;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+  }
+  
+  .owl-dot.active {
+    background: #333;
+  } */
+  

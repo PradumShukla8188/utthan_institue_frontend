@@ -1,0 +1,156 @@
+.nav-link{
+    padding: .5rem 1rem !important;
+}
+.btn-socail-link{
+    border: none;
+}
+.footer-nav li a {
+    text-decoration: none;
+  }
+  
+  .footer-nav li a:hover {
+    text-decoration: underline; 
+  }
+  .list-unstyled li a {
+    text-decoration: none; 
+  }
+  .list-unstyled li a:hover {
+    text-decoration: underline; 
+  }
+
+  span a {
+    margin-right: 20px;
+  }
+  
+
+
+   /* General Header Styles */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    z-index: 999;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header-top {
+    background-color: #f4f4f4;
+    padding: 10px 0;
+  }
+  
+  .header-bottom {
+    background-color: #333;
+    padding: 10px 0;
+  }
+  
+  .nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .navbad {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-item {
+    margin-right: 20px;
+  }
+  
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+  }
+  
+  .nav-link:hover {
+    background-color: #555;
+    border-radius: 5px;
+  }
+  
+  .logo img {
+    width: 150px;
+  }
+  
+  /* Mobile & Tablet Menu */
+  .small-menu {
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .nav-col {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .nav-col ul {
+    display: flex;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .nav-col.open {
+    display: block;
+  }
+ button a {
+    color: black !important;
+    text-decoration: none !important;
+}
+  
+  @media (max-width: 992px) {
+    .nav-col {
+      display: none;
+      width: 100%;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      background-color: #333;
+      height: 100%;
+      padding: 20px;
+      z-index: 9999;
+    }
+  
+    .nav-col.open {
+      display: block;
+    }
+  
+    .navbad {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .nav-item {
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+  
+    .logo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  
+    .ulleft {
+      display: none;
+    }
+  
+    .btn-bhed {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .header-top {
+      display: none;
+    }
+  
+    .header-bottom {
+      padding: 10px 0;
+    }
+  }
+  

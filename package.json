@@ -13,8 +13,10 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
-    "bootstrap": "^5.3.3",
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.8",
     "fontawesome": "^5.6.3",
+    "framer-motion": "^12.23.16",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.3.0",

@@ -1,0 +1,258 @@
+/* General Footer Styles */
+.footer {
+    background-color: #222;
+    color: #fff;
+    padding: 40px 0;
+}
+
+.footer h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.footer p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #ccc;
+}
+
+.footer .list-unstyled {
+    padding: 0;
+    margin: 0;
+}
+
+.footer .list-unstyled li {
+    margin-bottom: 10px;
+}
+
+.footer .list-unstyled a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.footer .list-unstyled a:hover {
+    text-decoration: underline;
+    color: #ff5733;
+}
+
+.footer .map-img address {
+    font-size: 1rem;
+    color: #ccc;
+}
+
+.footer .map-img address a {
+    color: #ff5733;
+}
+
+.footer .footer-nav {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer .footer-nav li {
+    margin-right: 20px;
+}
+
+.footer .footer-nav li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.footer .footer-nav li a:hover {
+    text-decoration: underline;
+    color: #ff5733;
+}
+
+.footer .donate-link .btn {
+    padding: 10px 30px;
+    background-color: #ff5733;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.footer .donate-link .btn:hover {
+    background-color: #e74c3c;
+}
+
+.copy {
+    background-color: #111;
+    color: #bbb;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.copy a {
+    color: #bbb;
+    text-decoration: none;
+}
+
+.copy a:hover {
+    color: #fff;
+}
+
+.copy span {
+    margin-top: 10px;
+}
+
+.copy span a {
+    margin-right: 10px;
+    color: #bbb;
+}
+
+.copy span a:hover {
+    color: #ff5733;
+}
+
+/* Mobile and Tablet Responsive CSS */
+@media (max-width: 992px) {
+    .footer .container {
+        padding: 0 15px;
+    }
+
+    .footer .row {
+        flex-direction: column;
+    }
+
+    .footer .col-md-4 {
+        margin-bottom: 20px;
+    }
+
+    .footer .nav-box {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .footer .footer-nav {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .footer .footer-nav li {
+        margin: 10px 0;
+    }
+
+    .footer .donate-link {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .footer .donate-link .btn {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .copy {
+        font-size: 0.9rem;
+    }
+
+    .copy span {
+        margin-top: 20px;
+    }
+
+    .copy span a {
+        margin: 0 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer h2 {
+        font-size: 1.25rem;
+    }
+
+    .footer p {
+        font-size: 0.9rem;
+    }
+
+    .footer .map-img address {
+        font-size: 0.9rem;
+    }
+
+    .footer .list-unstyled li {
+        margin-bottom: 8px;
+    }
+
+    .footer .footer-nav li a {
+        font-size: 0.9rem;
+    }
+
+    .footer .donate-link .btn {
+        padding: 12px 20px;
+    }
+
+    .copy {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer h2 {
+        font-size: 1rem;
+    }
+
+    .footer p {
+        font-size: 0.85rem;
+    }
+
+    .footer .map-img address {
+        font-size: 0.85rem;
+    }
+
+    .footer .footer-nav li a {
+        font-size: 0.85rem;
+    }
+
+    .footer .donate-link .btn {
+        padding: 10px 15px;
+    }
+
+    .copy {
+        font-size: 0.75rem;
+    }
+
+    .copy span {
+        margin-top: 15px;
+    }
+
+    .copy span a {
+        margin: 0 8px;
+    }
+}
+
+/* Large Screens */
+@media (min-width: 1200px) {
+    .footer {
+        padding: 60px 0;
+    }
+
+    .footer h2 {
+        font-size: 1.75rem;
+    }
+
+    .footer p {
+        font-size: 1.1rem;
+    }
+
+    .footer .footer-nav {
+        margin-top: 20px;
+    }
+
+    .footer .footer-nav li a {
+        font-size: 1rem;
+    }
+
+    .footer .donate-link .btn {
+        padding: 12px 25px;
+    }
+
+    .copy {
+        font-size: 1rem;
+    }
+}

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaAngleRight, FaGithub, FaGooglePlusG, FaPinterestP, FaTwitter, FaFacebookF } from "react-icons/fa";
+import './footer.css';
 
 const Footer: React.FC = () => {
     return (
@@ -46,7 +47,7 @@ const Footer: React.FC = () => {
                     </div>
 
                     {/* Footer Navigation */}
-                    <div className="nav-box row clearfix">
+                    {/* <div className="nav-box row clearfix">
                         <div style={{ top: "10px" }} className="inner col-md-9 clearfix">
                             <ul className="footer-nav clearfix">
                                 <li><Link to="/">Home</Link></li>
@@ -57,13 +58,13 @@ const Footer: React.FC = () => {
                                 <li><Link to="/contact">Contact</Link></li>
                             </ul>
                         </div>
-
+                        
                         <div style={{ top: "10px" }} className="donate-link col-md-3">
                             <Link to="/donate" className="btn btn-primary">
                                 <span className="btn-title">Donate Now</span>
                             </Link>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </footer>
 

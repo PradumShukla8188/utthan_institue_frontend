@@ -259,7 +259,7 @@ header {
     padding: 7px; }
     header .header-top .col-det .ulleft li {
       float: left;
-      padding: 12px;
+      padding: 2px;
       color: #686968;
       font-size: .9rem; }
       header .header-top .col-det .ulleft li i {
@@ -271,7 +271,7 @@ header {
       float: right; }
       header .header-top .col-det .ulright li {
         float: left;
-        padding: 10px;
+        padding: 8px;
         color: #d3d7ce;
         font-size: 1rem;
         font-weight: 600; }

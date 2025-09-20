@@ -145,6 +145,8 @@
 // export default DonateNow;
 import React, { useState } from "react";
 import './pageCss/donate.css';
+import scannerImg from "../../../assets/images/slider/scanner-utthan.jpeg";
+
 
 const DonateNow: React.FC = () => {
     const [formData, setFormData] = useState({
@@ -210,10 +212,9 @@ const DonateNow: React.FC = () => {
                 <div className="card">
                     <div className="card-content p-6 text-center">
                         <h3 className="text-xl font-semibold mb-4">Google Pay (UPI)</h3>
-                        <p className="text-lg font-bold">UPI ID: uthhaninstitue@upi</p>
+                        <p className="text-lg font-bold">UPI ID: hzozyvmlg5fp@mahb || uthhaninstitue@upi</p>
                         <img
-                            src="/assets/qr-code.png"
-                            alt="Google Pay QR Code"
+                            src={scannerImg} alt="Google Pay QR Code"
                             className="mx-auto my-4 w-40 h-40"
                         />
                         <p>Scan the QR code or use the UPI ID to donate</p>

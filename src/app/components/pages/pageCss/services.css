@@ -1,0 +1,218 @@
+/* Premium Services & Animated Background */
+.services-page {
+  position: relative;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+/* Animated Background Blobs */
+.animated-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  filter: blur(100px);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  animation: blob-float 20s infinite alternate;
+}
+
+.blob-1 {
+  width: 500px;
+  height: 500px;
+  background: #3cc88f;
+  top: -100px;
+  left: -100px;
+}
+
+.blob-2 {
+  width: 600px;
+  height: 600px;
+  background: #1877F2;
+  bottom: -200px;
+  right: -100px;
+  animation-delay: -5s;
+}
+
+.blob-3 {
+  width: 400px;
+  height: 400px;
+  background: #f97316;
+  top: 40%;
+  left: 60%;
+  animation-delay: -10s;
+}
+
+@keyframes blob-float {
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(100px, 50px) scale(1.1); }
+  66% { transform: translate(-50px, 150px) scale(0.9); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+/* Hero Section */
+.services-hero {
+  position: relative;
+  z-index: 1;
+  height: 45vh;
+  min-height: 350px;
+  background: url('https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&q=80&w=2000') center/cover;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.services-hero .hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.6) 100%);
+}
+
+.services-hero .hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+}
+
+.services-hero h1 {
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin-bottom: 15px;
+  letter-spacing: -1px;
+}
+
+/* Services Grid */
+.services-grid-section {
+  position: relative;
+  z-index: 1;
+  padding: 100px 0;
+}
+
+.services-main-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+/* Premium Card Overrides */
+.service-card-premium {
+  height: auto;
+  min-height: 420px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+}
+
+.service-card-premium:hover {
+  transform: translateY(-15px) scale(1.02);
+  background: white;
+}
+
+.card-accent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  transition: height 0.3s ease;
+}
+
+.service-card-premium:hover .card-accent {
+  height: 8px;
+}
+
+/* Glassmorphic CTA */
+.cta-glass-banner {
+  background: linear-gradient(135deg, rgba(60, 200, 143, 0.1), rgba(24, 119, 242, 0.1));
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  padding: 80px 40px;
+  border-radius: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  text-align: center;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.05);
+}
+
+.cta-glass-banner h2 {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 20px;
+}
+
+.cta-btn-modern {
+  margin-top: 30px;
+  background: #0f172a;
+  color: white;
+  padding: 16px 45px;
+  border-radius: 50px;
+  border: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cta-btn-modern:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(15, 23, 42, 0.2);
+  background: #3cc88f;
+}
+
+/* UIverse Card Styles (Sync with home page) */
+.uiverse-card {
+  position: relative;
+  background: #fff;
+  border-radius: 24px;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 40px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card-icon {
+  font-size: 3rem;
+  margin-bottom: 25px;
+  display: block;
+}
+
+.card-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 15px;
+  line-height: 1.2;
+}
+
+.card-description {
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.card-action {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  color: #0f172a;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .services-hero h1 { font-size: 2.5rem; }
+  .cta-glass-banner h2 { font-size: 2rem; }
+  .cta-glass-banner { padding: 40px 20px; }
+}

@@ -1,0 +1,158 @@
+/* Professional Slim Header - Version 5 */
+:root {
+  --accent: #3cc88f;
+  --text-dark: #0f172a;
+  --header-height: 70px;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2000;
+  transition: all 0.3s ease;
+  background: white;
+  /* Ensure white background by default */
+}
+
+.header-top {
+  background: #0f172a;
+  padding: 6px 0;
+  color: #fff;
+  font-size: 0.75rem;
+}
+
+.header.scrolled .header-top {
+  display: none;
+}
+
+.header-bottom {
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  transition: height 0.3s ease;
+}
+
+.header.scrolled .header-bottom {
+  height: 60px;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* Logo */
+.logo img {
+  height: 40px;
+  width: auto;
+}
+
+/* Navigation Menu - Slimmed down */
+.navbad {
+  display: flex;
+  gap: 2px;
+  /* Minimal gap */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.navbad li a {
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-dark) !important;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  /* Prevent wrapping */
+}
+
+.navbad li a .icon {
+  font-size: 1rem;
+}
+
+.navbad li.active a {
+  color: var(--accent) !important;
+  background: rgba(60, 200, 143, 0.08);
+}
+
+.navbad li:hover a {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+/* CTA Button - Compact */
+.btn-donate {
+  background: var(--accent);
+  color: white !important;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 800;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: 0.3s;
+  text-decoration: none;
+}
+
+.btn-donate:hover {
+  background: #2ea878;
+  transform: translateY(-2px);
+}
+
+/* Fix for slider overlapping */
+/* The home page or slider container should have margin-top equal to header-top + header-bottom */
+/* But since header is fixed, we can just add padding to body or a wrapper */
+
+@media (max-width: 1100px) {
+  .navbad li a .text {
+    display: none;
+    /* Icon only on medium screens to save space */
+  }
+}
+
+@media (max-width: 991px) {
+  .header-bottom {
+    height: 60px;
+  }
+
+  .nav-col {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: #fff;
+    padding: 80px 20px;
+    box-shadow: -10px 0 50px rgba(0, 0, 0, 0.1);
+    transition: right 0.4s ease;
+    z-index: 3000;
+  }
+
+  .nav-col.open {
+    right: 0;
+  }
+
+  .navbad {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .navbad li a {
+    font-size: 1.1rem;
+    padding: 12px 20px;
+  }
+
+  .navbad li a .text {
+    display: inline;
+  }
+}

@@ -1,35 +1,33 @@
-import { FaFacebookSquare, FaTwitterSquare, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import React from 'react';
+import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaYoutube } from 'react-icons/fa';
+import './socialMediaLink.css';
 
-const openExternalLink = (url: string) => {
-    window.open(url, '_blank', 'noopener,noreferrer');
-};
+const SocialLinks: React.FC = () => {
+    const socialData = [
+        { name: 'facebook', icon: <FaFacebookF />, url: 'https://www.facebook.com/p/Utthan-Institute-of-Development-Studies-Yamunanagar-100054320958652/', color: '#1877F2' },
+        { name: 'twitter', icon: <FaTwitter />, url: 'https://twitter.com', color: '#1DA1F2' },
+        { name: 'instagram', icon: <FaInstagram />, url: 'https://instagram.com', color: '#E4405F' },
+        { name: 'linkedin', icon: <FaLinkedinIn />, url: 'https://linkedin.com', color: '#0A66C2' },
+        { name: 'youtube', icon: <FaYoutube />, url: 'https://youtube.com', color: '#FF0000' },
+    ];
 
-const SocialLinks = () => {
     return (
-        <div className="col-lg-3 col-md-6 folouws">
-            <ul className="ulright">
-                <li><small>Follow Us</small>:</li>
-                <li>
-                    <button title='go to facebbok' className='btn-socail-link' onClick={() => openExternalLink('https://www.facebook.com/yourpage')}>
-                        <FaFacebookSquare />
-                    </button>
-                </li>
-                <li>
-                    <button title='go to twitter' className='btn-socail-link' onClick={() => openExternalLink('https://twitter.com/yourprofile')}>
-                        <FaTwitterSquare />
-                    </button>
-                </li>
-                <li>
-                    <button title='go to instagram' className='btn-socail-link' onClick={() => openExternalLink('https://www.instagram.com/yourprofile')}>
-                        <FaInstagram />
-                    </button>
-                </li>
-                <li>
-                    <button title='go to linkdin' className='btn-socail-link' onClick={() => openExternalLink('https://www.linkedin.com/in/yourprofile')}>
-                        <FaLinkedin />
-                    </button>
-                </li>
-            </ul>
+        <div className="social-links-wrapper">
+            {socialData.map((item, index) => (
+                <a
+                    key={index}
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`social-icon-btn ${item.name}`}
+                    style={{ '--brand-color': item.color } as React.CSSProperties}
+                    title={`Follow us on ${item.name}`}
+                >
+                    <span className="icon-container">
+                        {item.icon}
+                    </span>
+                </a>
+            ))}
         </div>
     );
 };

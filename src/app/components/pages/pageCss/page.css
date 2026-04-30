@@ -1,121 +1,314 @@
-/* slider css */
-.slider {
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .owl-carousel .owl-stage {
-    display: flex;
-    transition: transform 0.5s ease;
-  }
-  
-  .owl-item {
-    flex: 0 0 100%;
-  }
-  
-  .owl-nav {
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    z-index: 10;
-  }
-  
-  .owl-prev, .owl-next {
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    padding: 10px;
-    cursor: pointer;
-  }
-  
+body {
+  padding-top: 70px; /* Account for fixed header */
+}
 
+/* Modern utility classes and shared layout styles */
 
-
-
-
-
-
-
-
-
-
-
-  /* .owl-dots {
-    position: absolute;
-    bottom: 10px;
-    width: 100%;
-    text-align: center;
-  }
-  
-  .owl-dot {
-    display: inline-block;
-    margin: 0 5px;
-    cursor: pointer;
-    width: 10px;
-    height: 10px;
-    background: #fff;
-    border-radius: 50%;
-    transition: background-color 0.3s;
-  }
-  
-  .owl-dot.active {
-    background: #333;
-  } */
-  /* .owl-carousel {
-    display: block !important;
-    width: 100%;
-    z-index: 1;
-} */
-
-
+/* Session Titles */
 .session-title {
-  margin: 60px 0;
+  margin: 80px 0 40px;
   text-align: left;
+  position: relative;
 }
 
 .session-title h2 {
-  font-size: 32px;
-  font-weight: bold;
-  color: #333;
+  font-size: 38px;
+  font-weight: 800;
+  color: #1e293b;
   margin-bottom: 25px;
+  position: relative;
+  display: inline-block;
 }
 
+/* Subtle accent line under titles */
+.session-title h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #3cc88f, #21d7d9);
+  border-radius: 2px;
+}
+
+/* Achievements List */
 .achievements-list {
   list-style: none;
   padding-left: 0;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
 .achievements-list li {
   position: relative;
-  padding-left: 25px;
-  margin-bottom: 15px;
-  font-size: 16px;
-  line-height: 1.6;
-  color: #444;
+  padding-left: 35px;
+  margin-bottom: 20px;
+  font-size: 17px;
+  line-height: 1.7;
+  color: #475569;
+  transition: transform 0.3s ease;
+}
+
+.achievements-list li:hover {
+  transform: translateX(5px);
+  color: #0f172a;
 }
 
 .achievements-list li::before {
   content: "✔";
   position: absolute;
   left: 0;
-  top: 2px;
-  color: #28a745; /* green tick */
+  top: 3px;
+  color: #fff;
+  background: linear-gradient(135deg, #3cc88f, #21d7d9);
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 12px;
   font-weight: bold;
+  box-shadow: 0 4px 10px rgba(60, 200, 143, 0.3);
 }
 
 .appeal-title {
-  font-size: 24px;
-  font-weight: 600;
-  margin-top: 30px;
+  font-size: 26px;
+  font-weight: 700;
+  margin-top: 40px;
   margin-bottom: 15px;
-  color: #222;
+  color: #0f172a;
 }
 
 .appeal-text {
-  font-size: 16px;
-  line-height: 1.6;
-  margin-bottom: 20px;
-  color: #555;
+  font-size: 17px;
+  line-height: 1.7;
+  margin-bottom: 30px;
+  color: #64748b;
+  max-width: 800px;
+}
+
+/* Base button styling modernizations (overriding default styles gently) */
+.btn-success {
+  background: linear-gradient(135deg, #3cc88f, #28a745) !important;
+  border: none !important;
+  box-shadow: 0 4px 15px rgba(60, 200, 143, 0.3) !important;
+  padding: 12px 30px !important;
+  font-weight: 600 !important;
+  border-radius: 30px !important;
+  transition: all 0.3s ease !important;
+}
+
+.btn-success:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(60, 200, 143, 0.4) !important;
+}
+
+/* --- Section Specific Modernizations --- */
+
+/* About Us Section */
+.about-us {
+  background-color: #f8fafc !important;
+  padding: 80px 0 !important;
+}
+
+.about-us .text-part h2 {
+  font-size: 2.5rem !important;
+  color: #0f172a !important;
+  font-weight: 800 !important;
+}
+
+.about-us .text-part p {
+  color: #475569 !important;
+  font-size: 1.1rem !important;
+  line-height: 1.8 !important;
+  text-indent: 0 !important;
+}
+
+/* Quick Boxes (Glassmorphism & Hover) */
+.about-quick-box .about-qcard {
+  background: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  padding: 40px 20px !important;
+  border-radius: 20px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  cursor: default;
+}
+
+.about-quick-box .about-qcard:hover {
+  transform: translateY(-10px) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1) !important;
+  background: rgba(255, 255, 255, 1) !important;
+}
+
+.about-quick-box .about-qcard i {
+  transition: transform 0.3s ease;
+}
+
+.about-quick-box .about-qcard:hover i {
+  transform: scale(1.2);
+}
+
+/* Mission & Vision Section */
+.mission-vision {
+  padding: 80px 0;
+  background: #ffffff;
+}
+
+.mission-vision .row {
+  margin-bottom: 60px;
+  align-items: center;
+}
+
+.mission-vision .mv-det h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 25px;
+  position: relative;
+  display: inline-block;
+}
+
+.mission-vision .mv-det h1::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 50px;
+  height: 4px;
+  background: linear-gradient(90deg, #ff6b70, #f7a900);
+  border-radius: 2px;
+}
+
+.mission-vision .mv-det p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #475569;
+}
+
+.mission-vision .mv-det ul {
+  padding-left: 0;
+}
+
+.mission-vision .mv-det ul li {
+  font-size: 1.1rem;
+  color: #475569;
+  margin-bottom: 12px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.mission-vision .mv-det ul li::before {
+  content: "✦";
+  position: absolute;
+  left: 0;
+  color: #ff6b70;
+  font-size: 14px;
+}
+
+.mission-vision .mv-img {
+  overflow: hidden;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.mission-vision .mv-img img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.8s ease;
+}
+
+.mission-vision .mv-img:hover img {
+  transform: scale(1.05);
+}
+
+/* Achievements Background Section */
+.doctor-message {
+  background-attachment: fixed !important;
+  position: relative;
+  border-radius: 0;
+}
+
+.doctor-message::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.8));
+  z-index: 1;
+}
+
+.doctor-message .inner-lay {
+  position: relative;
+  z-index: 2;
+  background: transparent !important;
+  padding: 80px 0 !important;
+}
+
+.doctor-message .session-title h2,
+.doctor-message .appeal-title {
+  color: #fff !important;
+}
+
+.doctor-message .session-title h2::after {
+  background: linear-gradient(90deg, #fff, rgba(255,255,255,0.3));
+}
+
+.doctor-message .achievements-list li {
+  color: #cbd5e1;
+}
+
+.doctor-message .appeal-text {
+  color: #e2e8f0;
+}
+
+.doctor-message .numb-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 40px 20px !important;
+  margin-bottom: 30px; /* Vertical spacing only */
+  transition: transform 0.3s ease, background 0.3s ease;
+  text-align: center;
+}
+
+.doctor-message .numb-card:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.doctor-message .numb-card h3 {
+  border-bottom: none !important;
+  margin-bottom: 10px !important;
+  background: linear-gradient(to right, #3cc88f, #21d7d9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  font-size: 42px;
+}
+
+.doctor-message .numb-card span {
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+/* General Animations */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(30px);
+  visibility: hidden;
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  will-change: opacity, visibility;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
 }

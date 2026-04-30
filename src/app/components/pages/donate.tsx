@@ -1,301 +1,198 @@
-// import React, { useState } from "react";
-// import './pageCss/donate.css';
-// const DonateNow: React.FC = () => {
-//     const [formData, setFormData] = useState({
-//         name: "",
-//         cardNumber: "",
-//         expiry: "",
-//         cvv: "",
-//         amount: "",
-//     });
-//     const [errors, setErrors] = useState<{ [key: string]: string }>({});
-
-//     const validateForm = () => {
-//         let valid = true;
-//         let newErrors: { [key: string]: string } = {};
-
-//         if (!formData.name) {
-//             newErrors.name = "Name is required";
-//             valid = false;
-//         }
-//         if (!formData.cardNumber.match(/^\d{16}$/)) {
-//             newErrors.cardNumber = "Invalid card number (16 digits required)";
-//             valid = false;
-//         }
-//         if (!formData.expiry.match(/^(0[1-9]|1[0-2])\/(\d{2})$/)) {
-//             newErrors.expiry = "Invalid expiry date (MM/YY format)";
-//             valid = false;
-//         }
-//         if (!formData.cvv.match(/^\d{3,4}$/)) {
-//             newErrors.cvv = "Invalid CVV (3 or 4 digits)";
-//             valid = false;
-//         }
-//         if (!formData.amount.match(/^\d+(\.\d{1,2})?$/)) {
-//             newErrors.amount = "Enter a valid donation amount";
-//             valid = false;
-//         }
-
-//         setErrors(newErrors);
-//         return valid;
-//     };
-
-//     const handleSubmit = (e: React.FormEvent) => {
-//         e.preventDefault();
-//         if (validateForm()) {
-//             alert("Donation Successful! Thank you for your support.");
-//         }
-//     };
-
-//     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-//         setFormData({ ...formData, [e.target.name]: e.target.value });
-//     };
-
-//     return (
-//         <div style={{ marginTop: "180px" }} className="container mx-auto p-6">
-//             <h2 className="text-3xl font-bold text-center mb-6">Donate Now</h2>
-//             <div className="grid md:grid-cols-2 gap-6">
-//                 {/* Google Pay QR and Number */}
-//                 <div className="card">
-//                     <div className="card-content p-6 text-center">
-//                         <h3 className="text-xl font-semibold mb-4">Google Pay (UPI)</h3>
-//                         <p className="text-lg font-bold">UPI ID: uthhaninstitue@upi</p>
-//                         <img
-//                             src="/assets/qr-code.png"
-//                             alt="Google Pay QR Code"
-//                             className="mx-auto my-4 w-40 h-40"
-//                         />
-//                         <p>Scan the QR code or use the UPI ID to donate</p>
-//                     </div>
-//                 </div>
-
-//                 {/* Credit/Debit Card Payment Form */}
-//                 <div className="card">
-//                     <div className="card-content p-6">
-//                         <h3 className="text-xl font-semibold mb-4">Credit/Debit Card Payment</h3>
-//                         <form onSubmit={handleSubmit}>
-//                             <div className="mb-3">
-//                                 <label>Name on Card</label>
-//                                 <input
-//                                     type="text"
-//                                     name="name"
-//                                     value={formData.name}
-//                                     onChange={handleChange}
-//                                     className="input"
-//                                 />
-//                                 {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
-//                             </div>
-//                             <div className="mb-3">
-//                                 <label>Card Number</label>
-//                                 <input
-//                                     type="text"
-//                                     name="cardNumber"
-//                                     maxLength={16}
-//                                     value={formData.cardNumber}
-//                                     onChange={handleChange}
-//                                     className="input"
-//                                 />
-//                                 {errors.cardNumber && <p className="text-red-500 text-sm">{errors.cardNumber}</p>}
-//                             </div>
-//                             <div className="grid grid-cols-2 gap-3 mb-3">
-//                                 <div>
-//                                     <label>Expiry (MM/YY)</label>
-//                                     <input
-//                                         type="text"
-//                                         name="expiry"
-//                                         maxLength={5}
-//                                         value={formData.expiry}
-//                                         onChange={handleChange}
-//                                         className="input"
-//                                     />
-//                                     {errors.expiry && <p className="text-red-500 text-sm">{errors.expiry}</p>}
-//                                 </div>
-//                                 <div>
-//                                     <label>CVV</label>
-//                                     <input
-//                                         type="text"
-//                                         name="cvv"
-//                                         maxLength={4}
-//                                         value={formData.cvv}
-//                                         onChange={handleChange}
-//                                         className="input"
-//                                     />
-//                                     {errors.cvv && <p className="text-red-500 text-sm">{errors.cvv}</p>}
-//                                 </div>
-//                             </div>
-//                             <div className="mb-3">
-//                                 <label>Donation Amount ($)</label>
-//                                 <input
-//                                     type="text"
-//                                     name="amount"
-//                                     value={formData.amount}
-//                                     onChange={handleChange}
-//                                     className="input"
-//                                 />
-//                                 {errors.amount && <p className="text-red-500 text-sm">{errors.amount}</p>}
-//                             </div>
-//                             <button type="submit" className="btn w-full mt-4">Donate Now</button>
-//                         </form>
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default DonateNow;
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaHeart, FaCreditCard, FaMobileAlt, FaUniversity, FaCheckCircle, FaSpinner } from "react-icons/fa";
 import './pageCss/donate.css';
 import scannerImg from "../../../assets/images/slider/scanner-utthan.jpeg";
 
-
 const DonateNow: React.FC = () => {
-    const [formData, setFormData] = useState({
-        name: "",
-        cardNumber: "",
-        expiry: "",
-        cvv: "",
-        amount: "",
-    });
+    const [step, setStep] = useState(1);
+    const [paymentMethod, setPaymentMethod] = useState("upi");
+    const [amount, setAmount] = useState("");
+    const [isProcessing, setIsProcessing] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
 
-    const [errors, setErrors] = useState<{ [key: string]: string }>({});
-    const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
-    const validateForm = () => {
-        let valid = true;
-        let newErrors: { [key: string]: string } = {};
+    const amounts = ["100", "500", "1000", "2000", "5000"];
 
-        if (!formData.name) {
-            newErrors.name = "Name is required";
-            valid = false;
-        }
-        if (!formData.cardNumber.match(/^\d{16}$/)) {
-            newErrors.cardNumber = "Invalid card number (16 digits required)";
-            valid = false;
-        }
-        if (!formData.expiry.match(/^(0[1-9]|1[0-2])\/(\d{2})$/)) {
-            newErrors.expiry = "Invalid expiry date (MM/YY format)";
-            valid = false;
-        }
-        if (!formData.cvv.match(/^\d{3,4}$/)) {
-            newErrors.cvv = "Invalid CVV (3 or 4 digits)";
-            valid = false;
-        }
-        if (!formData.amount.match(/^\d+(\.\d{1,2})?$/)) {
-            newErrors.amount = "Enter a valid donation amount";
-            valid = false;
-        }
-
-        setErrors(newErrors);
-        return valid;
+    const handleAmountSelect = (val: string) => {
+        setAmount(val);
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleDonate = (e: React.FormEvent) => {
         e.preventDefault();
-        if (validateForm()) {
-            alert("Donation Successful! Thank you for your support.");
-        }
-    };
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
-
-    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-        setTouched({ ...touched, [e.target.name]: true });
+        setIsProcessing(true);
+        // Simulate payment processing
+        setTimeout(() => {
+            setIsProcessing(false);
+            setIsSuccess(true);
+        }, 2500);
     };
 
     return (
-        <div style={{ marginTop: "180px" }} className="container mx-auto p-6">
-            <h2 className="text-3xl font-bold text-center mb-6">Donate Now</h2>
-            <div className="grid md:grid-cols-2 gap-6">
-                {/* Google Pay QR and Number */}
-                <div className="card">
-                    <div className="card-content p-6 text-center">
-                        <h3 className="text-xl font-semibold mb-4">Google Pay (UPI)</h3>
-                        <p className="text-lg font-bold">UPI ID: hzozyvmlg5fp@mahb || uthhaninstitue@upi</p>
-                        <img
-                            src={scannerImg} alt="Google Pay QR Code"
-                            className="mx-auto my-4 w-40 h-40"
-                        />
-                        <p>Scan the QR code or use the UPI ID to donate</p>
-                    </div>
+        <div className="donate-page">
+            {/* Hero Section */}
+            <section className="donate-hero">
+                <div className="hero-overlay"></div>
+                <div className="container">
+                    <motion.div 
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="hero-content"
+                    >
+                        <span className="badge">Make a Difference</span>
+                        <h1>Your Gift, Their Future</h1>
+                        <p>Every contribution, no matter the size, helps us continue our mission of serving suffering humanity.</p>
+                    </motion.div>
                 </div>
+            </section>
 
-                {/* Credit/Debit Card Payment Form */}
-                <div className="card">
-                    <div className="card-content p-6">
-                        <h3 className="text-xl font-semibold mb-4">Credit/Debit Card Payment</h3>
-                        <form onSubmit={handleSubmit}>
-                            <div className="mb-3">
-                                <label>Name on Card</label>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    value={formData.name}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    className={`input ${touched.name && errors.name ? 'error' : ''}`}
-                                />
-                                {touched.name && errors.name && <p className="error-message">{errors.name}</p>}
-                            </div>
-                            <div className="mb-3">
-                                <label>Card Number</label>
-                                <input
-                                    type="text"
-                                    name="cardNumber"
-                                    maxLength={16}
-                                    value={formData.cardNumber}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    className={`input ${touched.cardNumber && errors.cardNumber ? 'error' : ''}`}
-                                />
-                                {touched.cardNumber && errors.cardNumber && <p className="error-message">{errors.cardNumber}</p>}
-                            </div>
-                            <div className="grid grid-cols-2 gap-3 mb-3">
-                                <div>
-                                    <label>Expiry (MM/YY)</label>
-                                    <input
-                                        type="text"
-                                        name="expiry"
-                                        maxLength={5}
-                                        value={formData.expiry}
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        className={`input ${touched.expiry && errors.expiry ? 'error' : ''}`}
-                                    />
-                                    {touched.expiry && errors.expiry && <p className="error-message">{errors.expiry}</p>}
-                                </div>
-                                <div>
-                                    <label>CVV</label>
-                                    <input
-                                        type="text"
-                                        name="cvv"
-                                        maxLength={4}
-                                        value={formData.cvv}
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        className={`input ${touched.cvv && errors.cvv ? 'error' : ''}`}
-                                    />
-                                    {touched.cvv && errors.cvv && <p className="error-message">{errors.cvv}</p>}
-                                </div>
-                            </div>
-                            <div className="mb-3">
-                                <label>Donation Amount ($)</label>
-                                <input
-                                    type="text"
-                                    name="amount"
-                                    value={formData.amount}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    className={`input ${touched.amount && errors.amount ? 'error' : ''}`}
-                                />
-                                {touched.amount && errors.amount && <p className="error-message">{errors.amount}</p>}
-                            </div>
-                            <button type="submit" className="btn w-full mt-4">Donate Now</button>
-                        </form>
+            <section className="donate-container py-24">
+                <div className="container">
+                    <div className="max-w-4xl mx-auto">
+                        <AnimatePresence mode="wait">
+                            {!isSuccess ? (
+                                <motion.div 
+                                    key="donate-form"
+                                    initial={{ opacity: 0, scale: 0.95 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 0.95 }}
+                                    className="donation-glass-card"
+                                >
+                                    {/* Amount Selection */}
+                                    <div className="donation-step mb-12">
+                                        <h3>1. Choose Amount (₹)</h3>
+                                        <div className="amount-grid">
+                                            {amounts.map((val) => (
+                                                <button 
+                                                    key={val}
+                                                    className={`amount-btn ${amount === val ? 'active' : ''}`}
+                                                    onClick={() => handleAmountSelect(val)}
+                                                >
+                                                    ₹{val}
+                                                </button>
+                                            ))}
+                                            <div className="custom-amount">
+                                                <input 
+                                                    type="number" 
+                                                    placeholder="Custom Amount" 
+                                                    value={amount}
+                                                    onChange={(e) => setAmount(e.target.value)}
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Payment Method */}
+                                    <div className="donation-step mb-12">
+                                        <h3>2. Payment Method</h3>
+                                        <div className="method-grid">
+                                            <button 
+                                                className={`method-btn ${paymentMethod === 'card' ? 'active' : ''}`}
+                                                onClick={() => setPaymentMethod('card')}
+                                            >
+                                                <FaCreditCard />
+                                                <span>Card</span>
+                                            </button>
+                                            <button 
+                                                className={`method-btn ${paymentMethod === 'upi' ? 'active' : ''}`}
+                                                onClick={() => setPaymentMethod('upi')}
+                                            >
+                                                <FaMobileAlt />
+                                                <span>UPI / QR</span>
+                                            </button>
+                                            <button 
+                                                className={`method-btn ${paymentMethod === 'netbanking' ? 'active' : ''}`}
+                                                onClick={() => setPaymentMethod('netbanking')}
+                                            >
+                                                <FaUniversity />
+                                                <span>Net Banking</span>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    {/* Dynamic Payment Content */}
+                                    <div className="payment-details mb-10">
+                                        {paymentMethod === 'card' && (
+                                            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="card-form">
+                                                <div className="form-group">
+                                                    <label>Card Number</label>
+                                                    <input type="text" placeholder="XXXX XXXX XXXX XXXX" />
+                                                </div>
+                                                <div className="form-row">
+                                                    <div className="form-group">
+                                                        <label>Expiry</label>
+                                                        <input type="text" placeholder="MM/YY" />
+                                                    </div>
+                                                    <div className="form-group">
+                                                        <label>CVV</label>
+                                                        <input type="password" placeholder="***" />
+                                                    </div>
+                                                </div>
+                                            </motion.div>
+                                        )}
+
+                                        {paymentMethod === 'upi' && (
+                                            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="upi-content">
+                                                <div className="upi-id-box">
+                                                    <span>UPI ID: uthhaninstitue@upi</span>
+                                                </div>
+                                                <div className="qr-wrapper">
+                                                    <img src={scannerImg} alt="UPI QR" />
+                                                    <p>Scan to Pay using any UPI App</p>
+                                                </div>
+                                            </motion.div>
+                                        )}
+
+                                        {paymentMethod === 'netbanking' && (
+                                            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="net-banking">
+                                                <select className="bank-select">
+                                                    <option>Select Your Bank</option>
+                                                    <option>State Bank of India</option>
+                                                    <option>HDFC Bank</option>
+                                                    <option>ICICI Bank</option>
+                                                    <option>Axis Bank</option>
+                                                </select>
+                                            </motion.div>
+                                        )}
+                                    </div>
+
+                                    <button 
+                                        className={`donate-submit-btn ${isProcessing ? 'processing' : ''}`}
+                                        onClick={handleDonate}
+                                        disabled={isProcessing || !amount}
+                                    >
+                                        {isProcessing ? (
+                                            <><FaSpinner className="spin" /> Processing...</>
+                                        ) : (
+                                            <><FaHeart /> Secure Donation</>
+                                        )}
+                                    </button>
+                                </motion.div>
+                            ) : (
+                                <motion.div 
+                                    key="success-message"
+                                    initial={{ opacity: 0, scale: 0.8 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    className="success-card"
+                                >
+                                    <div className="success-icon">
+                                        <FaCheckCircle />
+                                    </div>
+                                    <h2>Thank You for Your Generosity!</h2>
+                                    <p>Your donation of ₹{amount} has been successfully processed. We've sent a receipt to your email.</p>
+                                    <div className="success-actions">
+                                        <button onClick={() => setIsSuccess(false)} className="btn-again">New Donation</button>
+                                        <button onClick={() => window.location.href='/'} className="btn-home">Back to Home</button>
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
     );
 };

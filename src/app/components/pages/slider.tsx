@@ -65,7 +65,7 @@ const Slider: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       goToNextSlide();
-    }, 4000);
+    }, 6000);
     return () => clearInterval(interval);
   }, []);
 

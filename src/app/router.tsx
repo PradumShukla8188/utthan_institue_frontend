@@ -9,6 +9,8 @@ import DonateNow from './components/pages/donate';
 import NotFound from './components/pages/notFound';
 
 
+import ProgrammeDetail from './components/pages/programmeDetail';
+
 const RouteLinks: React.FC = () => {
     return (
         <Routes>
@@ -19,6 +21,7 @@ const RouteLinks: React.FC = () => {
             <Route path='blog' element={<Blog />} />
             <Route path='contact-us' element={<ContactUs />} />
             <Route path='donate' element={<DonateNow />} />
+            <Route path='programme/:id' element={<ProgrammeDetail />} />
 
             {/* Handle 404 Not Found */}
             <Route path="*" element={<NotFound />} />

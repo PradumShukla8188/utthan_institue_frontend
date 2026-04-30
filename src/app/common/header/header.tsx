@@ -1,84 +1,87 @@
-import React, { useState } from "react";
-import { FaEnvelope, FaPhoneVolume, FaBars } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import { 
+    FaEnvelope, FaPhoneVolume, FaBars, FaTimes, 
+    FaHome, FaInfoCircle, FaHandsHelping, FaImages, FaBlog, FaPhoneAlt 
+} from "react-icons/fa";
 import logo from "../../../assets/images/logo.jpg";
 import './header.css';
 import SocialLinks from "../common/socialMediaLink";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Header: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+    const location = useLocation();
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 50) {
+                setIsScrolled(true);
+            } else {
+                setIsScrolled(false);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    // Close menu on route change
+    useEffect(() => {
+        setIsMenuOpen(false);
+    }, [location]);
+
+    const navItems = [
+        { path: '/', label: 'Home', icon: <FaHome /> },
+        { path: '/about-us', label: 'About', icon: <FaInfoCircle /> },
+        { path: '/services', label: 'Services', icon: <FaHandsHelping /> },
+        { path: '/gallery', label: 'Gallery', icon: <FaImages /> },
+        { path: '/blog', label: 'Blog', icon: <FaBlog /> },
+        { path: '/contact-us', label: 'Contact', icon: <FaPhoneAlt /> },
+    ];
+
     return (
-        <header className="header">
-            {/* Top Header */}
-            <div className="header-top">
+        <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
+            {/* Main Navigation Header */}
+            <div className="header-bottom">
                 <div className="container">
-                    <div className="row col-det">
-                        {/* Contact Info */}
-                        <div className="col-lg-6 d-none d-lg-block">
-                            <ul className="ulleft">
-                                <li>
-                                    <FaEnvelope /> utthaninstitueofdevelopermentstudies@gmail.com <span>|</span>
-                                </li>
-                                <li>
-                                    <FaPhoneVolume /> +876 987 666 5433
-                                </li>
-                            </ul>
-                        </div>
-
-                        {/* Social Media Links */}
-                        <SocialLinks />
-
-                        {/* Buttons */}
-                        <div className="col-lg-3 d-none d-md-block col-md-6 btn-bhed">
-                            <button className="btn btn-sm btn-success">Join Us</button>
-                            <button className="btn btn-sm btn-default">
-                                <Link to="/donate" >Donate</Link></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Navigation Header */}
-            <div id="menu-jk" className="header-bottom">
-                <div className="container">
-                    <div className="row nav-row">
-                        {/* Logo Section */}
-                        <div className="col-lg-3 col-md-12 logo">
+                    <div className="nav-container">
+                        {/* Logo */}
+                        <div className="logo">
                             <Link to="/">
-                                <img src={logo} alt="Logo slider" />
+                                <img src={logo} alt="Utthan Logo" />
                             </Link>
-                            <a data-toggle="collapse" data-target="#menu" href="#menu" onClick={toggleMenu}>
-                                <FaBars className="d-block d-lg-none small-menu" />
-                            </a>
                         </div>
 
-                        {/* Navigation Menu */}
-                        <div id="menu" className={`col-lg-9 col-md-12 nav-col ${isMenuOpen ? 'open' : ''}`}>
+                        {/* Desktop Navigation */}
+                        <nav className={`nav-col ${isMenuOpen ? 'open' : ''}`}>
                             <ul className="navbad">
-                                <li className="nav-item active">
-                                    <Link className="nav-link" to="/">Home</Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to="/about-us">About Us</Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to="/services">Services</Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to="/gallery">Gallery</Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to="/blog">Blog</Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to="/contact-us">Contact Us</Link>
-                                </li>
+                                {navItems.map((item, index) => (
+                                    <li 
+                                        key={index} 
+                                        className={location.pathname === item.path ? 'active' : ''}
+                                    >
+                                        <Link to={item.path}>
+                                            <span className="icon">{item.icon}</span>
+                                            <span className="text">{item.label}</span>
+                                        </Link>
+                                    </li>
+                                ))}
                             </ul>
+                        </nav>
+
+                        {/* CTA Buttons & Mobile Toggle */}
+                        <div className="cta-area">
+                            <Link to="/donate" className="btn-donate d-none d-lg-inline-block">
+                                Donate Now
+                            </Link>
+                            <div className="mobile-toggle d-lg-none" onClick={toggleMenu}>
+                                {isMenuOpen ? <FaTimes /> : <FaBars />}
+                            </div>
                         </div>
                     </div>
                 </div>

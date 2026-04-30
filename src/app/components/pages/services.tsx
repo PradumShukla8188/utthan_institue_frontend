@@ -1,113 +1,150 @@
-import React from "react";
-import { Link } from "react-router-dom";
-// import "./aboutUs.css"; 
+import React, { useEffect } from "react";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import './pageCss/services.css';
-import img1 from '../../../assets/images/events/image_01.jpg';
-import img2 from '../../../assets/images/events/image_02.jpg';
-import img3 from '../../../assets/images/events/image_03.jpg';
-import img4 from '../../../assets/images/events/image_04.jpg';
-import img5 from '../../../assets/images/events/image_05.jpg';
-import img6 from '../../../assets/images/events/image_06.jpg';
-// import img7 from '../../../assets/images/events/image_07.jpg';
-// import img8 from '../../../assets/images/events/image_08.jpg';
-// Define service data
+
 const services = [
-    {
-        id: 1,
-        title: "Child Education in Africa",
-        image: img1,
-        raised: "$34,425",
-        goal: "$500,000",
-        description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    },
-    {
-        id: 2,
-        title: "Healthcare Support",
-        image: img2,
-        raised: "$20,120",
-        goal: "$400,000",
-        description:
-            "Providing medical assistance to underprivileged communities worldwide.",
-    },
-    {
-        id: 3,
-        title: "Clean Water Initiative",
-        image: img3,
-        raised: "$50,000",
-        goal: "$600,000",
-        description:
-            "Ensuring clean drinking water is available in remote locations.",
-    },
-    {
-        id: 4,
-        title: "Disaster Relief Fund",
-        image: img4,
-        raised: "$75,000",
-        goal: "$700,000",
-        description:
-            "Providing aid to communities affected by natural disasters.",
-    },
-    {
-        id: 5,
-        title: "Women Empowerment",
-        image: img5,
-        raised: "$15,000",
-        goal: "$300,000",
-        description:
-            "Supporting education and employment opportunities for women.",
-    },
-    {
-        id: 6,
-        title: "Food for All",
-        image: img6,
-        raised: "$60,500",
-        goal: "$800,000",
-        description:
-            "Feeding programs for homeless and underprivileged families.",
-    },
+  {
+    id: "women-empowerment",
+    title: "Mahila Suraksha and Vikas Manch",
+    description: `Over 127 units of grass root women's groups taking care of their safety and development.`,
+    icon: "👩‍👩‍👧‍👦",
+    color: "#3cc88f"
+  },
+  {
+    id: "health-programme",
+    title: "NIRAMAYA Community Health Programme",
+    description: `Provides doorstep health care through medical camps and health education.`,
+    icon: "🏥",
+    color: "#1877F2"
+  },
+  {
+    id: "social-defense",
+    title: "Social Defense and Security Division",
+    description: `Day care & nutritional support, medical help, legal aid, counselling, police protection.`,
+    icon: "🛡️",
+    color: "#E4405F"
+  },
+  {
+    id: "disability-management",
+    title: "KOSHISH – Institute of Disability Management",
+    description: `Provides specialized care to differently-abled persons (MR, Autism, CP, etc.).`,
+    icon: "♿",
+    color: "#0A66C2"
+  },
+  {
+    id: "human-rights",
+    title: "Issue Based Action Programme",
+    description: `Focus on human rights, RTI, consumer education, environment protection.`,
+    icon: "⚖️",
+    color: "#FFD700"
+  },
+  {
+    id: "resource-centre",
+    title: "Development Resource Centre",
+    description: `Engaged in training, research, documentation & consultancy.`,
+    icon: "📚",
+    color: "#9333ea"
+  },
+  {
+    id: "cultural-wing",
+    title: "Tarang - Cultural and Art Wing",
+    description: `Supports programmes through art & culture, using audio-visuals and street plays.`,
+    icon: "🎭",
+    color: "#f97316"
+  }
 ];
 
 const Services: React.FC = () => {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+    const handleLearnMore = (id: string) => {
+        navigate(`/programme/${id}`);
+    };
+
     return (
-        <div>
-            {/* Page Title Section */}
-            <div className="page-nav no-margin row">
-                <div className="container">
-                    <div className="row">
-                        <h2>Our Services</h2>
-                        <ul>
-                            <li>
-                                <Link to="/">
-                                    <i className="fas fa-home"></i> Home
-                                </Link>
-                            </li>
-                            <li>
-                                <i className="fas fa-angle-double-right"></i> Services
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+        <div className="services-page">
+            {/* Animated Background Blobs */}
+            <div className="animated-bg">
+                <div className="blob blob-1"></div>
+                <div className="blob blob-2"></div>
+                <div className="blob blob-3"></div>
             </div>
 
-            {/* Services Section */}
-            <section className="services">
+            {/* Hero Section */}
+            <section className="services-hero">
+                <div className="hero-overlay"></div>
                 <div className="container">
-                    <div className="row">
-                        {services.map((service) => (
-                            <div className="col-md-4 col-sm-6" key={service.id}>
-                                <div className="service-box">
-                                    <img src={service.image} alt={service.title} />
-                                    <h4>{service.title}</h4>
-                                    <p className="raises">
-                                        <span>Raised: {service.raised}</span> / {service.goal}
-                                    </p>
-                                    <p className="description">{service.description}</p>
-                                    <button className="btn btn-success btn-sm">Donate Now</button>
+                    <motion.div 
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.8 }}
+                        className="hero-content"
+                    >
+                        <span className="badge">Service Excellence</span>
+                        <h1>Our Real Impact</h1>
+                        <p>Bridging the gap between potential and opportunity through structured community development.</p>
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* Services Grid */}
+            <section className="services-grid-section">
+                <div className="container">
+                    <div className="text-center mb-20">
+                        <motion.h2 
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            className="text-4xl md:text-5xl font-black text-slate-900"
+                        >
+                            Professional <span className="text-green-500">Programmes</span>
+                        </motion.h2>
+                    </div>
+
+                    <div className="services-main-grid">
+                        {services.map((service, index) => (
+                            <motion.div
+                                key={service.id}
+                                className="uiverse-card service-card-premium"
+                                initial={{ opacity: 0, y: 50 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6, delay: index * 0.1 }}
+                                onClick={() => handleLearnMore(service.id)}
+                            >
+                                <div className="card-content">
+                                    <div className="card-icon">{service.icon}</div>
+                                    <h3 className="card-title">{service.title}</h3>
+                                    <p className="card-description">{service.description}</p>
+                                    <div className="card-action">
+                                        <span>Explore Initiative</span>
+                                        <span>→</span>
+                                    </div>
                                 </div>
-                            </div>
+                                <div className="card-accent" style={{ background: service.color } as React.CSSProperties}></div>
+                            </motion.div>
                         ))}
                     </div>
+                </div>
+            </section>
+
+            {/* Bottom CTA with Glassmorphism */}
+            <section className="bottom-cta-section py-20">
+                <div className="container">
+                    <motion.div 
+                        whileHover={{ scale: 1.02 }}
+                        className="cta-glass-banner"
+                    >
+                        <div className="cta-content">
+                            <h2>Join Our Mission</h2>
+                            <p>Be a part of the change. Your support can help us reach more lives.</p>
+                            <button className="cta-btn-modern">Donate Now</button>
+                        </div>
+                    </motion.div>
                 </div>
             </section>
         </div>

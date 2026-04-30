@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import { useNavigate } from 'react-router-dom';
 import Slider from "./slider";
 import "./pageCss/page.css";
 import missi from "../../../assets/images/misin.jpg";
 import vision from "../../../assets/images/vision.jpg";
-import Events from "./event";
+// import Events from "./event";
 import OurTeam from "./ourTeam";
-import OurBlog from "./ourBlogs";
+// import OurBlog from "./ourBlogs";
 import Programmes from "./ourPrograms";
 
 const Home: React.FC = () => {
@@ -16,13 +16,28 @@ const Home: React.FC = () => {
   //     navigate('/donate');
   // };
 
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const elements = document.querySelectorAll('.fade-in-section');
+    elements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div>
       {/* Slider Section */}
       <Slider />
 
       {/* About Us Section */}
-      <div className="about-us container-fluid">
+      <div className="about-us container-fluid fade-in-section">
         <div className="container">
           <div className="row natur-row no-margin w-100">
             <div className="text-part col-md-6">
@@ -73,7 +88,7 @@ const Home: React.FC = () => {
       </div>
 
       {/* Mission and Vision Section */}
-      <section className="container-fluid mission-vision">
+      <section className="container-fluid mission-vision fade-in-section">
         <div className="container">
           <div className="row mission">
             <div className="col-md-6 mv-det">
@@ -138,10 +153,10 @@ const Home: React.FC = () => {
       </section>
 
       {/* Events Section */}
-      <Events />
+      {/* <Events /> */}
 
       {/* Charity Numbers Section */}
-      <div className="doctor-message">
+      <div className="doctor-message fade-in-section">
         <div className="inner-lay">
           <div className="container">
             {/* <div className="row session-title">
@@ -206,35 +221,43 @@ const Home: React.FC = () => {
             </div>
 
             <div className="row">
-              <div className="col-sm-3 numb">
-                <h3>12+</h3>
-                <span>YEARS OF EXPERIENCE</span>
+              <div className="col-sm-3">
+                <div className="numb-card">
+                  <h3>12+</h3>
+                  <span>YEARS OF EXPERIENCE</span>
+                </div>
               </div>
-              <div className="col-sm-3 numb">
-                <h3>1812+</h3>
-                <span>HAPPY CHILDREN</span>
+              <div className="col-sm-3">
+                <div className="numb-card">
+                  <h3>1812+</h3>
+                  <span>HAPPY CHILDREN</span>
+                </div>
               </div>
-              <div className="col-sm-3 numb">
-                <h3>52+</h3>
-                <span>EVENTS</span>
+              <div className="col-sm-3">
+                <div className="numb-card">
+                  <h3>52+</h3>
+                  <span>EVENTS</span>
+                </div>
               </div>
-              <div className="col-sm-3 numb">
-                <h3>48+</h3>
-                <span>FUNDS RAISED</span>
+              <div className="col-sm-3">
+                <div className="numb-card">
+                  <h3>48+</h3>
+                  <span>FUNDS RAISED</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-        {/* Programmes Section */}
-        <Programmes />
+      {/* Programmes Section */}
+      <Programmes />
 
       {/* Team Section */}
       <OurTeam />
 
       {/* Blog Section */}
-      <OurBlog />
+      {/* <OurBlog /> */}
     </div>
   );
 };

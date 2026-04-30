@@ -1,102 +1,129 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { motion } from "framer-motion";
+import { FaCalendarAlt, FaUser, FaArrowRight } from "react-icons/fa";
+import './pageCss/blog.css';
+
 import img1 from '../../../assets/images/events/image_01.jpg';
 import img2 from '../../../assets/images/events/image_02.jpg';
 import img3 from '../../../assets/images/events/image_03.jpg';
 import img4 from '../../../assets/images/events/image_04.jpg';
 import img5 from '../../../assets/images/events/image_05.jpg';
 import img6 from '../../../assets/images/events/image_06.jpg';
-import './pageCss/blog.css'
-interface BlogPost {
-    id: number;
-    title: string;
-    image: string;
-    date: string;
-    description: string;
-}
 
-const blogPosts: BlogPost[] = [
+const blogPosts = [
     {
         id: 1,
-        title: "Methods of Recruitment",
+        title: "Impact Story: Empowering Women in Yamunanagar",
         image: img1,
-        date: "August 10, 2018",
-        description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam justo neque...",
+        date: "March 15, 2024",
+        author: "Admin",
+        category: "Empowerment",
+        description: "How our vocational training program helped 50 women start their own tailoring businesses this year.",
     },
     {
         id: 2,
-        title: "Strategies for Hiring",
+        title: "Success: 200+ Lives Impacted in Medical Camp",
         image: img2,
-        date: "August 12, 2018",
-        description:
-            "Vivamus arcu metus, mattis sed sagittis at, sagittis quis neque. Praesent...",
+        date: "March 10, 2024",
+        author: "Health Team",
+        category: "Health",
+        description: "A summary of our recent NIRAMAYA community health camp providing free checkups and medicine.",
     },
     {
         id: 3,
-        title: "Digital Marketing Trends",
+        title: "Celebrating National Girl Child Day",
         image: img3,
-        date: "August 15, 2018",
-        description:
-            "Aliquet sit amet elementum vel, vehicula eget eros. Vivamus arcu metus...",
+        date: "January 24, 2024",
+        author: "Advocacy",
+        category: "Awareness",
+        description: "Organizing awareness rallies and street plays to promote education and safety for girls.",
     },
     {
         id: 4,
-        title: "Business Growth Tips",
+        title: "Disability Management: Overcoming Challenges",
         image: img4,
-        date: "August 20, 2018",
-        description:
-            "Nullam justo neque, aliquet sit amet elementum vel, vehicula eget eros...",
+        date: "December 03, 2023",
+        author: "KOSHISH Team",
+        category: "Rehabilitation",
+        description: "Success stories of children at KOSHISH Institute integrating into mainstream society.",
     },
     {
         id: 5,
-        title: "Financial Planning Guide",
+        title: "Legal Aid: Know Your Rights Workshop",
         image: img5,
-        date: "August 25, 2018",
-        description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent aliquet...",
+        date: "November 20, 2023",
+        author: "Legal Cell",
+        category: "Advocacy",
+        description: "A report on our workshop helping vulnerable groups understand RTI and Consumer Rights.",
     },
     {
         id: 6,
-        title: "Success in Business",
+        title: "30 Years of Service: Our Annual Report",
         image: img6,
-        date: "August 30, 2018",
-        description:
-            "Vivamus arcu metus, mattis sed sagittis at, sagittis quis neque. Praesent...",
+        date: "October 15, 2023",
+        author: "Director",
+        category: "Organization",
+        description: "Looking back at three decades of humanitarian work and our goals for the coming decade.",
     },
 ];
 
 const Blog: React.FC = () => {
-    return (
-        <section className="blog-container">
-            <div className="page-nav">
-                <h2>Our Blog</h2>
-                <ul>
-                    <li>
-                        <a href="#"><i className="fas fa-home"></i> Home</a>
-                    </li>
-                    <li><i className="fas fa-angle-double-right"></i> Blog</li>
-                </ul>
-            </div>
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
-            <div className="blog-grid">
-                {blogPosts.map((post) => (
-                    <div key={post.id} className="blog-card">
-                        <div className="blog-image">
-                            <img src={post.image} alt={post.title} />
-                        </div>
-                        <div className="blog-content">
-                            <small>By Admin | {post.date}</small>
-                            <h4>{post.title}</h4>
-                            <p>{post.description}</p>
-                            <div className="link">
-                                <a href="#">Read more</a>
-                                <i className="fas fa-long-arrow-alt-right"></i>
-                            </div>
-                        </div>
+    return (
+        <div className="blog-page">
+            {/* Hero Section */}
+            <section className="blog-hero">
+                <div className="hero-overlay"></div>
+                <div className="container">
+                    <motion.div 
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="hero-content"
+                    >
+                        <span className="badge">Insights & Stories</span>
+                        <h1>Our Blog & Updates</h1>
+                        <p>Stay updated with our latest initiatives, success stories, and impact reports from the ground.</p>
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* Blog Grid */}
+            <section className="blog-main-grid py-24">
+                <div className="container">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                        {blogPosts.map((post, index) => (
+                            <motion.div 
+                                key={post.id}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                className="modern-blog-card"
+                            >
+                                <div className="blog-img-container">
+                                    <img src={post.image} alt={post.title} />
+                                    <div className="blog-cat-badge">{post.category}</div>
+                                </div>
+                                <div className="blog-body">
+                                    <div className="blog-meta">
+                                        <span><FaCalendarAlt /> {post.date}</span>
+                                        <span><FaUser /> {post.author}</span>
+                                    </div>
+                                    <h3>{post.title}</h3>
+                                    <p>{post.description}</p>
+                                    <button className="read-more-link">
+                                        Read Story <FaArrowRight />
+                                    </button>
+                                </div>
+                            </motion.div>
+                        ))}
                     </div>
-                ))}
-            </div>
-        </section>
+                </div>
+            </section>
+        </div>
     );
 };
 

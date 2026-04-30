@@ -1,14 +1,6 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import "./pageCss/gallery.css";
-import img1 from '../../../assets/images/events/image_01.jpg';
-import img2 from '../../../assets/images/events/image_02.jpg';
-import img3 from '../../../assets/images/events/image_03.jpg';
-import img4 from '../../../assets/images/events/image_04.jpg';
-import img5 from '../../../assets/images/events/image_05.jpg';
-import img6 from '../../../assets/images/events/image_06.jpg';
-import img7 from '../../../assets/images/events/image_07.jpg';
-import img8 from '../../../assets/images/events/image_08.jpg';
 
 import image4 from "../../../assets/images/slider/m1.jpeg";
 import image5 from "../../../assets/images/slider/m2.jpeg";
@@ -20,116 +12,115 @@ import image12 from "../../../assets/images/slider/l1.jpeg";
 import image13 from "../../../assets/images/slider/l2.jpeg";
 import image14 from "../../../assets/images/slider/l3.jpeg";
 import image15 from "../../../assets/images/slider/l4.jpeg";
-import image16 from "../../../assets/images/slider/l5.jpeg";
-import image17 from "../../../assets/images/slider/l6.jpeg";
-import image18 from "../../../assets/images/slider/l7.jpeg";
-import image19 from "../../../assets/images/slider/l8.jpeg";
-import image20 from "../../../assets/images/slider/l9.jpeg";
-import image21 from "../../../assets/images/slider/l10.jpeg";
-import image22 from "../../../assets/images/slider/l11.jpeg";
-
-
-
-// const categories = [
-//     { id: "all", name: "All" },
-//     { id: "finance", name: "Finance" },
-//     { id: "digital-marketing", name: "Digital Marketing" },
-//     { id: "money", name: "Money" },
-//     { id: "business-analysis", name: "Business Analysis" },
-// ];
-
-// const galleryImages = [
-//     { id: 1, category: "finance", src: img1 },
-//     { id: 2, category: "digital-marketing", src: img2 },
-//     { id: 3, category: "finance", src: img3 },
-//     { id: 4, category: "business-analysis", src: img4 },
-//     { id: 5, category: "money", src: img5 },
-//     { id: 6, category: "money", src: img6 },
-//     { id: 7, category: "business-analysis", src: img7 },
-//     { id: 8, category: "business-analysis", src: img8 },
-// ];
 
 const categories = [
-  { id: "all", name: "All" },
-  { id: "Mahila Suraksha and Vikas Manch", name: "Mahila Suraksha and Vikas Manch" },
-  { id: "NIRAMAYA Community Health Programme", name: "NIRAMAYA Community Health Programme" },
-  { id: "Social Defense and Security Division", name: "Social Defense and Security Division" },
-  { id: "KOSHISH – Institute of Disability Management", name: "KOSHISH – Institute of Disability Management" },
-  { id: "Issue Based Action Programme", name: "Issue Based Action Programme" },
-  { id: "Development Resource Centre", name: "Development Resource Centre" },
-  { id: "Tarang - Cultural and Art Wing", name: "Tarang - Cultural and Art Wing" },
+    { id: "all", name: "All Work" },
+    { id: "Mahila Suraksha and Vikas Manch", name: "Women Empowerment" },
+    { id: "NIRAMAYA Community Health Programme", name: "Health" },
+    { id: "Social Defense and Security Division", name: "Social Defense" },
+    { id: "KOSHISH – Institute of Disability Management", name: "Disability" },
+    { id: "Issue Based Action Programme", name: "Rights" },
+    { id: "Development Resource Centre", name: "Resource" },
+    { id: "Tarang - Cultural and Art Wing", name: "Culture" },
 ];
 
 const galleryImages = [
-  { id: 1, category: "Mahila Suraksha and Vikas Manch", src: image4 },
-  { id: 2, category: "Mahila Suraksha and Vikas Manch", src: image5 },
-  { id: 3, category: "NIRAMAYA Community Health Programme", src: image6 },
-  { id: 4, category: "Social Defense and Security Division", src: image8 },
-  { id: 5, category: "KOSHISH – Institute of Disability Management", src: image9 },
-  { id: 6, category: "Issue Based Action Programme", src: image10 },
-  { id: 7, category: "Development Resource Centre", src: image12 },
-  { id: 8, category: "Tarang - Cultural and Art Wing", src: image13 },
-  { id: 9, category: "Tarang - Cultural and Art Wing", src: image14 },
-  { id: 10, category: "Development Resource Centre", src: image15 },
+    { id: 1, category: "Mahila Suraksha and Vikas Manch", src: image4, title: "Women Support Group" },
+    { id: 2, category: "Mahila Suraksha and Vikas Manch", src: image5, title: "Vocational Training" },
+    { id: 3, category: "NIRAMAYA Community Health Programme", src: image6, title: "Medical Camp" },
+    { id: 4, category: "Social Defense and Security Division", src: image8, title: "Elderly Care" },
+    { id: 5, category: "KOSHISH – Institute of Disability Management", src: image9, title: "Special Education" },
+    { id: 6, category: "Issue Based Action Programme", src: image10, title: "RTI Awareness" },
+    { id: 7, category: "Development Resource Centre", src: image12, title: "NGO Training" },
+    { id: 8, category: "Tarang - Cultural and Art Wing", src: image13, title: "Street Play" },
+    { id: 9, category: "Tarang - Cultural and Art Wing", src: image14, title: "Folk Performance" },
+    { id: 10, category: "Development Resource Centre", src: image15, title: "Impact Study" },
 ];
-
 
 const Gallery: React.FC = () => {
     const [selectedCategory, setSelectedCategory] = useState("all");
 
-    // Filter images based on selected category
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     const filteredImages = selectedCategory === "all"
         ? galleryImages
         : galleryImages.filter((image) => image.category === selectedCategory);
 
     return (
-        <div>
-            {/* Page Title Section */}
-            <div className="page-nav no-margin row">
+        <div className="gallery-page">
+            {/* Hero Section */}
+            <section className="gallery-hero">
+                <div className="hero-overlay"></div>
                 <div className="container">
-                    <div className="row">
-                        <h2>Our Gallery</h2>
-                        <ul>
-                            <li>
-                                <Link to="/">
-                                    <i className="fas fa-home"></i> Home
-                                </Link>
-                            </li>
-                            <li>
-                                <i className="fas fa-angle-double-right"></i> Gallery
-                            </li>
-                        </ul>
-                    </div>
+                    <motion.div 
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="hero-content"
+                    >
+                        <span className="badge">Visual Journey</span>
+                        <h1>Our Impact in Pictures</h1>
+                        <p>Capturing moments of change, empowerment, and community resilience across our diverse programmes.</p>
+                    </motion.div>
                 </div>
-            </div>
+            </section>
 
-            {/* Gallery Section */}
-            <div id="portfolio" className="gallery">
+            {/* Gallery Content */}
+            <section className="gallery-main py-20">
                 <div className="container">
-                    {/* Filter Buttons */}
-                    <div className="gallery-filter">
-                        {categories.map((category) => (
-                            <button
-                                key={category.id}
-                                className={`btn btn-default filter-button ${selectedCategory === category.id ? "active" : ""
-                                    }`}
-                                onClick={() => setSelectedCategory(category.id)}
-                            >
-                                {category.name}
-                            </button>
-                        ))}
+                    {/* Filter Bar */}
+                    <div className="filter-wrapper mb-12">
+                        <div className="filter-container">
+                            {categories.map((category) => (
+                                <button
+                                    key={category.id}
+                                    className={`filter-btn ${selectedCategory === category.id ? "active" : ""}`}
+                                    onClick={() => setSelectedCategory(category.id)}
+                                >
+                                    {category.name}
+                                </button>
+                            ))}
+                        </div>
                     </div>
 
-                    {/* Gallery Images */}
-                    <div className="row gallery-grid">
-                        {filteredImages.map((image) => (
-                            <div className="gallery_product col-lg-3 col-md-4 col-sm-6 col-xs-12" key={image.id}>
-                                <img src={image.src} className="img-responsive" alt="Gallery item" />
-                            </div>
-                        ))}
-                    </div>
+                    {/* Image Grid */}
+                    <motion.div 
+                        layout
+                        className="gallery-grid"
+                    >
+                        <AnimatePresence mode="popLayout">
+                            {filteredImages.map((image) => (
+                                <motion.div
+                                    layout
+                                    key={image.id}
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 0.9 }}
+                                    transition={{ duration: 0.3 }}
+                                    className="gallery-item"
+                                >
+                                    <div className="image-wrapper">
+                                        <img src={image.src} alt={image.title} />
+                                        <div className="image-overlay">
+                                            <div className="overlay-content">
+                                                <span>{image.category}</span>
+                                                <h3>{image.title}</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </AnimatePresence>
+                    </motion.div>
+                    
+                    {filteredImages.length === 0 && (
+                        <div className="no-images text-center py-20">
+                            <p className="text-slate-400 text-lg">No images found in this category yet.</p>
+                        </div>
+                    )}
                 </div>
-            </div>
+            </section>
         </div>
     );
 };

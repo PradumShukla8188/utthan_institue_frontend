@@ -1,37 +1,5 @@
 import React from "react";
-import img1 from "../../../assets/images/team/team-memb1.jpg";
-import img2 from "../../../assets/images/team/team-memb2.jpg";
-import img3 from "../../../assets/images/team/team-memb3.jpg";
-import img4 from "../../../assets/images/team/team-memb4.jpg";
 
-interface TeamMember {
-  imageSrc: string;
-  name: string;
-  role: string;
-}
-
-const teamData: TeamMember[] = [
-  {
-    imageSrc: img1,
-    name: "David Kanuel",
-    role: "CEO",
-  },
-  {
-    imageSrc: img2,
-    name: "David Kanuel",
-    role: "CFO",
-  },
-  {
-    imageSrc: img3,
-    name: "David Kanuel",
-    role: "Team Leader",
-  },
-  {
-    imageSrc: img4,
-    name: "David Kanuel",
-    role: "Project Manager",
-  },
-];
 
 const OurTeam: React.FC = () => {
   return (

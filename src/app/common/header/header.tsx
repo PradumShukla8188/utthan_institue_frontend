@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { 
-    FaEnvelope, FaPhoneVolume, FaBars, FaTimes, 
+    FaBars, FaTimes, 
     FaHome, FaInfoCircle, FaHandsHelping, FaImages, FaBlog, FaPhoneAlt 
 } from "react-icons/fa";
 import logo from "../../../assets/images/logo.jpg";
 import './header.css';
-import SocialLinks from "../common/socialMediaLink";
 import { Link, useLocation } from "react-router-dom";
 
 const Header: React.FC = () => {

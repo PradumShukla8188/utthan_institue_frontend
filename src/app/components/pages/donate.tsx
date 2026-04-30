@@ -5,7 +5,6 @@ import './pageCss/donate.css';
 import scannerImg from "../../../assets/images/slider/scanner-utthan.jpeg";
 
 const DonateNow: React.FC = () => {
-    const [step, setStep] = useState(1);
     const [paymentMethod, setPaymentMethod] = useState("upi");
     const [amount, setAmount] = useState("");
     const [isProcessing, setIsProcessing] = useState(false);

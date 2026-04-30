@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaAngleRight, FaGithub, FaGooglePlusG, FaPinterestP, FaTwitter, FaFacebookF, FaMapMarkerAlt, FaPhoneAlt, FaEnvelopeOpenText } from "react-icons/fa";
+import { FaAngleRight, FaMapMarkerAlt, FaPhoneAlt, FaEnvelopeOpenText } from "react-icons/fa";
 import './footer.css';
 import SocialLinks from "../common/socialMediaLink";
 
